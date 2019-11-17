@@ -1,0 +1,65 @@
+{
+    "id": "543402ce-5be5-4db3-bc4f-daf2ff17fe86",
+    "name": "Knowledge1",
+    "isOverridable": true,
+    "entries": [
+        {
+            "value": "unsupervised learning",
+            "synonyms": [
+                "UNSUPERVISED LEARNING",
+                "unsupervised learning",
+                "unsupervised learning",
+                "Unsupervised Learning"
+            ]
+        },
+        {
+            "value": "supervised learning",
+            "synonyms": [
+                "SUPERVISED LEARNING",
+                "supervised learning",
+                "supervised learning",
+                "Supervised Learning"
+            ]
+        },
+        {
+            "value": "k-means",
+            "synonyms": [
+                "K-MEANS",
+                "k-means",
+                "k-means",
+                "K-Means"
+            ]
+        },
+        {
+            "value": "logistic regression",
+            "synonyms": [
+                "LOGISTIC REGRESSION",
+                "logistic regression",
+                "logistic regression",
+                "Logistic Regression"
+            ]
+        },
+        {
+            "value": "k-nearest neighbours",
+            "synonyms": [
+                "K-NEAREST NEIGHBOURS",
+                "k-nearest neighbours",
+                "k-nearest neighbours",
+                "K-Nearest Neighbours"
+            ]
+        },
+        {
+            "value": "decision trees",
+            "synonyms": [
+                "DECISION TREES",
+                "decision trees",
+                "decision trees",
+                "Decision Trees"
+            ]
+        }
+    ],
+    "isEnum": false,
+    "automatedExpansion": true,
+    "allowFuzzyExtraction": true,
+    "isRegexp": false
+}
