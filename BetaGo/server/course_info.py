@@ -16,11 +16,18 @@ def course_action(action,intents,params):
 
         elif intents =="lecturer":
             message = ""
+
             try:
                 if data[courseID]["term one"]:
                     message += "Term one: \nLecturer is: " + data[courseID]["term one"]["lecturer"] +"<br>"
+            except:
+                pass
+            try:
                 if data[courseID]["term two"]:
                     message += "Term two: \nLecturer is: " + data[courseID]["term two"]["lecturer"] +"<br>"
+            except:
+                pass
+            try:
                 if data[courseID]["term three"]:
                     message += "Term three: \nLecturer is: " + data[courseID]["term two"]["lecturer"] + "<br>"
             except:

@@ -135,22 +135,51 @@ def sign_up():
 
     return render_template('sign_up.html', error=error)
 
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
+    error = None
+    # login function
+    if request.method == 'POST':
+        if valid_regist(request.form['name']):
+            error = 'Only admin can login.'
+
+        elif valid_login(request.form['name'], request.form['pass']):
+            session['name'] = request.form.get('name')
+            return redirect(url_for('knowledge_base'))
+
+        else:
+            error = 'Wrong name or password！'
+
+    return render_template('admin_login.html',error = error)
 
 
-# @app.route('/login')
-# def login():
-# 	return render_template('login.html')
+@app.route('/knowledge_base', methods=['GET','POST'])
+def knowledge_base():
+    if request.method == 'GET':
+        return render_template('knowledge_base.html')
 
+    keyword = request.form["keyword"]
+    description = request.form["description"]
+    advantage = request.form["advantage"]
+    disadvantage = request.form["disadvantage"]
+    example = request.form["example"]
 
-# @app.route('/sign_up')
-# def sign_up():
-# 	return render_template('sign_up.html')
-# @app.route('/contact')
-# def contact():
-# 	return render_template('contact.html')
+    sim = {}
+    m = {}
+    sim['description'] = description
+    sim['advantage'] = advantage
+    sim['disadvantage'] = disadvantage
+    sim['example'] = example
+    m[keyword] = sim
+    jsonData = json.dumps(m, indent=4)
+    fileObject = open('knowledge_base.json', 'a+')
+    fileObject.write(jsonData)
+    fileObject.close()
+
+    return redirect(url_for('successful'))
+@app.route('/success')
+def successful():
+    return render_template('success.html')
 
 
 

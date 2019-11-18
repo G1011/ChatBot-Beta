@@ -57,8 +57,8 @@ def add_to_course_db():
 			change = False
 			for course in course_list:
 				if course not in courses_in_db:
-					crawl_handbook_subject(course_id)
-					crawl_class_timetable(course_id)
+					crawl_handbook_subject(course)
+					crawl_class_timetable(course)
 					time.sleep(10)
 					change = True
 			if change:

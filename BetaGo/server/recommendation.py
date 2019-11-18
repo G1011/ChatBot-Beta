@@ -40,6 +40,9 @@ def recommendation_action(action,intents,params):
                         course.append(i)
                 #print(course)
                 message = "The course relate to "+ key + " is: <br>" + " ".join(course)
+                if course == []:
+                    message = "Sorry we don't have this category."
+
 
             except:
                 message = "Sorry we don't have this category."

@@ -1,16 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Please input your knowledge</title>
+<meta charset="utf-8" />
+<title>Please input your knowledge</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='frontend/css/know.css')}}">
 </head>
+
 <body>
-    <form action="/submit_knowledge" method="POST">
-    <legend>POST  /submit_knowledge:</legend>
-    <p><input name="keyword" placeholder="keyword" type="keyword"></p>
-    <p><input name="description" placeholder="description" type="description"></p>
-    <p><button type="submit">POST</button></p>
-  </form>
+
+<figure><img class="bgone" src="{{ url_for('static', filename='frontend/images/success.jpg')}}"></figure>
+<figure><img class="pic" src="{{ url_for('static', filename='frontend/images/a.png')}}"></figure>
+<form action="{{ url_for('knowledge_base') }}" method="POST">
+<div class="table">
+	<div class="wel">Knowledge Base</div>
+	<div class="wel1">Please input your knowledge</div>
+	<div class="user">
+		<p><input name="keyword" placeholder="keyword" type="keyword"></p>
+	</div>			
+	<div class="password">
+		<p><input name="description" placeholder="description" type="description"></p>
+	</div>			
+	<div class="user2">
+		<p><input name="advantage" placeholder="advantage" type="advantage"></p>
+	</div>			
+	<div class="user3">
+		<p><input name="disadvantage" placeholder="disadvantage" type="disadvantage"></p>
+	</div>			
+	<div class="user4">
+		<p><input name="example" placeholder="example" type="example"></p>
+	</div>
+	<div class="user5">
+		<a  href="{{ url_for('logout')}}">Log out</a>
+	</div>
+		<p><button class="btn" type="submit" name="post" value="post">Submit</p>
+
+</div>
 
 </body>
 </html>
