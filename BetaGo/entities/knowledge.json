@@ -1,65 +1,65 @@
 {
-    "id": "543402ce-5be5-4db3-bc4f-daf2ff17fe86",
-    "name": "Knowledge1",
-    "isOverridable": true,
+    "allowFuzzyExtraction": true,
+    "automatedExpansion": true,
     "entries": [
         {
-            "value": "unsupervised learning",
             "synonyms": [
                 "UNSUPERVISED LEARNING",
                 "unsupervised learning",
                 "unsupervised learning",
                 "Unsupervised Learning"
-            ]
+            ],
+            "value": "unsupervised learning"
         },
         {
-            "value": "supervised learning",
             "synonyms": [
                 "SUPERVISED LEARNING",
                 "supervised learning",
                 "supervised learning",
                 "Supervised Learning"
-            ]
+            ],
+            "value": "supervised learning"
         },
         {
-            "value": "k-means",
             "synonyms": [
                 "K-MEANS",
                 "k-means",
                 "k-means",
                 "K-Means"
-            ]
+            ],
+            "value": "k-means"
         },
         {
-            "value": "logistic regression",
             "synonyms": [
                 "LOGISTIC REGRESSION",
                 "logistic regression",
                 "logistic regression",
                 "Logistic Regression"
-            ]
+            ],
+            "value": "logistic regression"
         },
         {
-            "value": "k-nearest neighbours",
             "synonyms": [
                 "K-NEAREST NEIGHBOURS",
                 "k-nearest neighbours",
                 "k-nearest neighbours",
                 "K-Nearest Neighbours"
-            ]
+            ],
+            "value": "k-nearest neighbours"
         },
         {
-            "value": "decision trees",
             "synonyms": [
                 "DECISION TREES",
                 "decision trees",
                 "decision trees",
                 "Decision Trees"
-            ]
+            ],
+            "value": "decision trees"
         }
     ],
+    "id": "543402ce-5be5-4db3-bc4f-daf2ff17fe86",
     "isEnum": false,
-    "automatedExpansion": true,
-    "allowFuzzyExtraction": true,
-    "isRegexp": false
+    "isOverridable": true,
+    "isRegexp": false,
+    "name": "Knowledge1",
 }

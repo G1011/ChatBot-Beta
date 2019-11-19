@@ -18,9 +18,8 @@ import json
 
 
 
-path = 'data/knowledge/knowledge.json'
+path = 'knowledge_base.json'
 with open(path) as f:
     data = json.load(f)
 
-print(data["k-means"])
-print(data["k-means"]["properties"])
+print(json.dumps(data,indent=4))

@@ -165,14 +165,23 @@ def knowledge_base():
     example = request.form["example"]
 
     sim = {}
-    m = {}
+    #m = {}
     sim['description'] = description
-    sim['advantage'] = advantage
-    sim['disadvantage'] = disadvantage
+    sim['advantages'] = advantage
+    sim['disadvantages'] = disadvantage
     sim['example'] = example
-    m[keyword] = sim
-    jsonData = json.dumps(m, indent=4)
-    fileObject = open('knowledge_base.json', 'a+')
+    try:
+        f = open("data/knowledge/knowledge.json", encoding='utf-8')
+        setting = json.load(f)
+        setting[keyword] = sim
+        jsonData = json.dumps(setting,indent=4)
+        print(2)
+    except:
+        m = {}
+        m[keyword] = sim
+        jsonData = json.dumps(m,indent=4)
+        print(1)
+    fileObject = open('data/knowledge/knowledge.json', 'w')
     fileObject.write(jsonData)
     fileObject.close()
 

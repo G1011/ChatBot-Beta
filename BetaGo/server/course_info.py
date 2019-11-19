@@ -59,7 +59,8 @@ def course_action(action,intents,params):
             message = "The handbook link is: <br>" + \
                       "<a href = \""+ data[courseID]["handbook link"]+ "\" target = \"_blank\"> Link </a>"
         elif intents == 'Outline_Link':
-            message = "The outline link is: <br>" + data[courseID]["course outline link"]
+            message = "The outline link is: <br>" \
+                      "<a href = \"" + data[courseID]["course outline link"] + "\" target = \"_blank\"> Link </a>"
         elif intents =='check_adk':
             try:
                 if data[courseID]["ADK"] == "true":

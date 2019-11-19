@@ -26,9 +26,8 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="{{ url_for('static', filename='frontend/img/admin.jpg')}}" alt="admin image"></figure>
-                        <a href="{{ url_for('index')}}" style="display:inline-block; margin-left:50px; margin-right:50px; color:black;">Home</a>
-                        <a href="{{ url_for('sign_up')}}" class="signup-image-link" style="display:inline-block; color:black;">Sign up</a>
+                        <figure><img src="{{ url_for('static', filename='frontend/images/signin-image.jpg')}}" alt="sing up image"></figure>
+                        <a href="#" class="signup-image-link">AdminLogin</a>
                     </div>
 
                     <div class="signin-form">
@@ -36,11 +35,14 @@
                         <form method="POST" class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your username"/>
+                                <input type="text" name="name" id="name" placeholder="Your zid"/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="pass" id="pass" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <a href="{{ url_for('sign_up')}}"><span><span></span></span>Sign up</a>
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
@@ -49,7 +51,14 @@
 						            {% endif %}
 					        </div>
                         </form>
-
+                        <div class="social-login">
+                            <a href="{{ url_for('index')}}">Home</a>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
