@@ -1,4 +1,5 @@
-import os, dialogflow, requests,json, pusher, urllib
+import os, requests,json, pusher, urllib
+import dialogflow_v2 as dialogflow
 from flask import json
 from flask import request,redirect,url_for,session
 from flask import Flask
@@ -89,16 +90,11 @@ def login():
     error = None
     # login function
     if request.method == 'POST':
-        # print('test_name', request.form['name'])
-        # print('test_pass', request.form['pass'])
-        # print('test_存在', valid_regist(request.form['name']))
-        # print('test_密码是否对', valid_login(request.form['name'], request.form['pass']))
         if valid_regist(request.form['name']):
             error = 'account has not been signed up'
 
         elif valid_login(request.form['name'], request.form['pass']):
             session['name'] = request.form.get('name')
-            print("!!!!!!!!!!!!!!!!!")
             return redirect(url_for('chatbot'))
 
         else:
@@ -113,21 +109,21 @@ def logout():
     session.pop('name', None)
     return redirect(url_for('index'))
 
-# sign up api
+# user to sign up
 @app.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
-    print("sadasda")
     error = None
     if request.method == 'POST':
+
         # check if the password are equal
         if request.form['pass'] != request.form['re_pass']:
             error = 'passwords are different！'
+
         # check if user has been registered
         elif valid_regist(request.form['name']):
             user = User(name=request.form['name'], password=request.form['pass'])
             db.session.add(user)
             db.session.commit()
-            print("test1")
             return redirect(url_for('login'))
         else:
 
@@ -164,8 +160,8 @@ def knowledge_base():
     disadvantage = request.form["disadvantage"]
     example = request.form["example"]
 
+    # create format to save in knowledge.json file
     sim = {}
-    #m = {}
     sim['description'] = description
     sim['advantages'] = advantage
     sim['disadvantages'] = disadvantage
@@ -175,23 +171,23 @@ def knowledge_base():
         setting = json.load(f)
         setting[keyword] = sim
         jsonData = json.dumps(setting,indent=4)
-        print(2)
     except:
         m = {}
         m[keyword] = sim
         jsonData = json.dumps(m,indent=4)
-        print(1)
     fileObject = open('data/knowledge/knowledge.json', 'w')
     fileObject.write(jsonData)
     fileObject.close()
 
     return redirect(url_for('successful'))
+
 @app.route('/success')
 def successful():
     return render_template('success.html')
 
 
-
+# detect user itents according to question
+# dialogflow detect intent function
 def detect_intent_texts(project_id, session_id, text, language_code):
 
     session_client = dialogflow.SessionsClient()
@@ -208,53 +204,41 @@ def detect_intent_texts(project_id, session_id, text, language_code):
 
         return  response.query_result
 
-
+# chatbot route
 @app.route('/chatbot', methods=['GET','POST'])
 def chatbot():
+    # if GET method caught
     if request.method == 'GET':
-        print("GET")
         return render_template('chatbot.html')
-    print("bbb")
+    # if POST method caught
     message = request.form['question']
-    #message = request.values['question']
-    #message = request.form["message"]
-    # message = request.form.get("texxt")
-    print(message)
+    # print(message)
 
-    #message = request.form["message"]
-    #print(message)
+    # setting project id
     project_id = os.getenv('DIALOGFLOW_PROJECT_ID')
 
-    #query_result_model:
+    # query_result_model:
     query_result = detect_intent_texts(project_id, "unique", message, 'en')
 
-    print(query_result)
-    print("*"*10)
+    # print(query_result)
+
     # here is some key parameter
     fulfillment_text = query_result.fulfillment_text
+
+    # get action from dialogflow fulfillment_text
     action = query_result.action
+
+    # using action to split into different server
     if fulfillment_text == "":
         if action =="Weather_Info":
             city = query_result.parameters["geo-city"]
-            # print(city)
-            # print(city["geo-city"])
             text = weather.weather(city)
-        elif action == "Other_Info":
-            pass
         elif action =="Course_Info" or action == "Stream_Info":
-            print('1')
             intents = query_result.intent.display_name
             params = query_result.parameters
-            print("fulfillment_text:", fulfillment_text)
-            print("action:", action)
-            print("intents:", intents)
-            print("params:", params)
-            # print("aaaaa:",params["course"])
-            print("fulfillment_text:", fulfillment_text)
             text = course_info.course_action(action,intents,params)
             print(text)
         elif action =="Recommendation":
-            #print("rrrr")
             intents = query_result.intent.display_name
             params = query_result.parameters
             text = recommendation.recommendation_action(action,intents,params)
@@ -266,12 +250,13 @@ def chatbot():
             text = "There is not this model"
         response_text = {"message": text}
     else:
+        # if not action has been detectd return dialogflow text
         text = fulfillment_text
         response_text = {"message": text}
     return jsonify(response_text)
 
 
 
-
+# Run server
 if __name__ == '__main__':
     app.run(debug = True)

@@ -1,13 +1,17 @@
 import json
 # index in db and then giving response
 def course_action(action,intents,params):
+    # action Course
     if action == "Course_Info":
+        # load course json db
         path = 'data/db.json'
         with open(path) as f:
             data = json.load(f)
 
         courseID = params["course"].upper()
-        #print("courseID:", courseID)
+
+        # parse message according to different user intents
+
         if intents == "courseInfo":
             meassage = data[courseID]
 
@@ -70,11 +74,14 @@ def course_action(action,intents,params):
             except:
                 message = "Sorry, the information about the course may not be release in our database."
 
+        # if there is not this kind of intents
         else:
             message = "There is not this model"
 
+    # action Stream
     if action =="Stream_Info":
         path = 'data/stream.json'
+        # load stream json db
         with open(path) as f:
             data = json.load(f)
         streamName = params["stream"]

@@ -1,6 +1,10 @@
 import json
 import re
 
+# The function is for creating dialogflow entities
+# load db path and knowledge path
+# creating create_course_entity with json format and upload it to dialogflow
+# creating create_knowledge_entity with json format and upload it to dialogflow
 
 def create_course_entity(db_path,output_path):
     with open(db_path) as f:

@@ -38,9 +38,9 @@ def recommendation_action(action,intents,params):
                     l = data[i]["category"].split()
                     if key in l:
                         course.append(i)
-                #print(course)
                 message = "The course relate to "+ key + " is: <br>" + " ".join(course)
                 if course == []:
+                    # if not course in list
                     message = "Sorry we don't have this category."
 
 

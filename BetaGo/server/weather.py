@@ -3,7 +3,7 @@ import requests
 
 
 
-
+# Openweather API
 def weather(city):
     payload = {'api_key': 'API_KEY_REMOVED'}
 
@@ -12,7 +12,6 @@ def weather(city):
     url = "http://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid="+appid
 
     res = requests.get(url,params=payload)
-    #print(res.status_code)
     res = res.json()
     pretty_data = json.dumps(res, indent=4)
     #print(pretty_data)
@@ -26,6 +25,5 @@ def weather(city):
     message = "The weather in " + city + " is：" + description + ". The temperature now is: "+ \
               temp + "Cel, the highest temperature is: " + temp_max + "Cel, the lowest temperature is: "+ \
               temp_min + "Cel. The humidity is: " + humidity + "."
-    #print(message)
 
     return message
